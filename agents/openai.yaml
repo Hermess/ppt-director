@@ -1,0 +1,8 @@
+interface:
+  display_name: "PPT Director"
+  short_description: "可插拔PPT总导演工作流"
+  brand_color: "#014EC6"
+  default_prompt: "Use $ppt-director to turn my topic, audience, style, and reviewer into a structured PPT workflow."
+
+policy:
+  allow_implicit_invocation: true

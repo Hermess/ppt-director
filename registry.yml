@@ -1,0 +1,33 @@
+defaults:
+  audience: default-government-leader
+  reviewer: yuan-jiajun
+  style: digital-zhejiang
+  toolchain: business-ppt
+  workflow: controlled
+
+audiences:
+  default-government-leader:
+    path: references/audiences/default-government-leader/audience-card.md
+    use_when: 政务汇报、领导汇报、数字化项目汇报、区域治理汇报、国企项目汇报
+
+reviewers:
+  yuan-jiajun:
+    path: references/reviewers/yuan-jiajun/reviewer-card.md
+    source: nuwa-skill
+    use_when: 区域治理、数字改革、产业升级、超大城市治理、政务汇报、数字政府
+
+styles:
+  digital-zhejiang:
+    path: references/styles/digital-zhejiang/style-card.md
+    slide_map: references/styles/digital-zhejiang/slide-type-map.md
+    assets:
+      contact_sheet: references/styles/digital-zhejiang/contact-sheet.png
+    use_when: 政务蓝、数字浙江、国企技术运营、智慧城市、数字改革、正式汇报
+
+toolchains:
+  business-ppt:
+    path: references/toolchains/business-ppt.md
+    use_when: 业务汇报、数据分析、政务汇报、项目总结、培训课件
+  visual-ppt:
+    path: references/toolchains/visual-ppt.md
+    use_when: 发布会、品牌展示、融资路演、大会 keynote、强视觉冲击演示
