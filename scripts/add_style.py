@@ -36,6 +36,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--name", required=True)
     parser.add_argument("--style-card", required=True)
+    parser.add_argument("--design-doc")
     parser.add_argument("--slide-map")
     parser.add_argument("--contact-sheet")
     parser.add_argument("--use-when", default="自定义 PPT 风格")
@@ -46,6 +47,14 @@ def main() -> int:
     target_dir.mkdir(parents=True, exist_ok=True)
 
     shutil.copyfile(args.style_card, target_dir / "style-card.md")
+    if args.design_doc:
+        shutil.copyfile(args.design_doc, target_dir / "design.md")
+    else:
+        (target_dir / "design.md").write_text(
+            "# Design Language\n\n- 描述该 PPT 风格的视觉 DNA、颜色、字体、母版元素、页型语言和禁忌。\n",
+            encoding="utf-8",
+        )
+
     if args.slide_map:
         shutil.copyfile(args.slide_map, target_dir / "slide-type-map.md")
     else:
@@ -60,6 +69,7 @@ def main() -> int:
 
     block = f"""  {name}:
     path: references/styles/{name}/style-card.md
+    design_doc: references/styles/{name}/design.md
     slide_map: references/styles/{name}/slide-type-map.md{asset_lines}
     use_when: {args.use_when}
 """

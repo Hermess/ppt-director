@@ -19,6 +19,7 @@ reviewers:
 styles:
   digital-zhejiang:
     path: references/styles/digital-zhejiang/style-card.md
+    design_doc: references/styles/digital-zhejiang/design.md
     slide_map: references/styles/digital-zhejiang/slide-type-map.md
     assets:
       contact_sheet: references/styles/digital-zhejiang/contact-sheet.png
