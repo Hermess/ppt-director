@@ -23,6 +23,7 @@ styles:
     slide_map: references/styles/digital-zhejiang/slide-type-map.md
     assets:
       contact_sheet: references/styles/digital-zhejiang/contact-sheet.png
+      city_skyline: references/styles/digital-zhejiang/assets/city-skyline.png
     use_when: 政务蓝、数字浙江、国企技术运营、智慧城市、数字改革、正式汇报
 
 toolchains:

@@ -15,7 +15,7 @@ README = ROOT / "README.md"
 
 
 PATH_RE = re.compile(r"^\s+(?:path|slide_map|design_doc):\s+(.+?)\s*$")
-ASSET_RE = re.compile(r"^\s+contact_sheet:\s+(.+?)\s*$")
+ASSET_RE = re.compile(r"^\s+(?:contact_sheet|city_skyline):\s+(.+?)\s*$")
 
 REQUIRED_WORKFLOWS = [
     "delivery-schema.md",
@@ -37,6 +37,7 @@ REQUIRED_SKILL_PHRASES = [
     "区域词",
     "主视觉占主体区",
     "字体字号",
+    "城市剪影固定资产",
 ]
 
 REQUIRED_README_PHRASES = [
@@ -46,6 +47,7 @@ REQUIRED_README_PHRASES = [
     "视觉一致版",
     "可编辑原生版",
     "字体字号",
+    "city-skyline.png",
 ]
 
 REQUIRED_REVIEW_PHRASES = [
@@ -64,6 +66,8 @@ REQUIRED_DESIGN_PHRASES = [
     "20 / 24 / 28",
     "内容文字",
     "16 / 18",
+    "city-skyline.png",
+    "不得自行生成",
 ]
 
 REQUIRED_GENERATION_READY_PHRASES = [
@@ -71,6 +75,8 @@ REQUIRED_GENERATION_READY_PHRASES = [
     "大标题：36 / 44 / 60 / 72",
     "小标题：20 / 24 / 28",
     "内容文字：16 / 18",
+    "城市剪影资产",
+    "city-skyline.png",
 ]
 
 

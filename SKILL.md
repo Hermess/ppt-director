@@ -15,6 +15,7 @@ description: |
 - 女娲 Nuwa 或对象 Skill 负责生成视角：受众画像、专家视角、表达风格。
 - PPT Director 负责调度：判断阶段、选择路线、读取插件、产出标准交付文档。
 - 设计语言负责视觉：`design.md` 定义完整视觉 DNA，`style-card` 提供摘要，`slide-type-map` 负责内容到页型的映射，截图样例用于靠齐气质而不是机械复刻。
+- 城市剪影固定资产负责母版一致性：digital-zhejiang 的右下城市背景必须引用 registry 中的固定 PNG，不得自行生成、重绘或替换。
 - 评审卡负责挑刺：逻辑、受众、风险、标题、缺失页。
 - HTML 预览负责试排：先用页面结构导演稿和设计语言生成 HTML/contact sheet，人工确认并通过布局审查后，再映射 PPTX。
 - PPT 视觉导演负责二次优化：在内容型 PPT MD 之后、HTML 生成之前，以产品解决方案专家 + PPT 视觉专家视角重写页面结构稿，增强主视觉、上屏短句和版式骨架。
@@ -78,6 +79,7 @@ description: |
 - 当前风格：从 `registry.yml` 的 `styles.<name>.path` 读取
 - 当前页型映射：从 `registry.yml` 的 `styles.<name>.slide_map` 读取
 - 当前截图样例：从 `registry.yml` 的 `styles.<name>.assets.contact_sheet` 读取；该样例只用于风格靠齐，不要求逐页照抄
+- 当前固定母版资产：从 `registry.yml` 的 `styles.<name>.assets.city_skyline` 等字段读取；这些资产必须直接引用，不要重新绘制或生成
 - 当前受众：从 `registry.yml` 的 `audiences.<name>.path` 读取
 - 当前评审专家：从 `registry.yml` 的 `reviewers.<name>.path` 读取
 - 当前工具链：从 `registry.yml` 的 `toolchains.<name>.path` 读取
@@ -138,11 +140,14 @@ description: |
 
 `references/workflows/generation-ready-director-brief.md`
 
+默认输出文件命名为 `[项目名]_生成就绪导演稿.md`，例如 `平台边界双向流转_生成就绪导演稿.md`。HTML、PNG、PPTX 生成时，以这份文件作为代码 Agent 的直接输入。
+
 生成就绪导演稿可以写设计系统参数，但必须放在 `生成执行层`，不得改写为上屏内容。它至少包含：
 
 - 输出格式：HTML+CSS、SVG、python-pptx 或 HTML+PPTX。
 - 画布参数：1280×720 或对应 16:9 画布、安全区、标题区、主体区、底部区。
 - 设计系统约束：从当前 `design.md` 读取的色彩、字体、母版元素、组件形态、箭头样式。
+- 固定资产引用：从 `registry.yml` 和 `design.md` 读取母版固定资产路径，例如 digital-zhejiang 的 `city-skyline.png`。
 - 区域布局参数：主视觉、辅助模块、底部价值区的坐标或比例。
 - 字体字号参数：字体、字号档位、字重，以及每个组件的字体 / 字号 / 字重。
 - 组件映射：内容节点 -> 设计系统组件 -> 坐标/尺寸 -> 样式 token。
@@ -215,6 +220,7 @@ Final layout gate 的硬规则：
 - 不要在没有完成 PPTX 渲染截图与 HTML/PNG 预览对比时说 PPTX 已经通过最终审查。
 - 不要为了可编辑性牺牲最终视觉正确性而不告知用户；视觉一致版和可编辑原生版的取舍必须明示。
 - 不要只按颜色和字体生成 PPT；必须对表设计语言文档，并尽量参考截图样例的母版感和组件语法。
+- 不要自行生成、重绘或替换设计语言中的固定母版资产；digital-zhejiang 的右下城市剪影必须引用 `city-skyline.png`。
 - 不要只用设计语言审查代替最终布局审查；设计像不等于页面成立。
 - 不要把每页视觉需求写成一句话；必须输出可执行的页面结构导演稿，且必须包含页面类型、主视觉设计、主视觉内容、页面文案和管理价值。
 - 不要把用户给的内容型 PPT MD 或看似完整的页面描述直接拿去生成 HTML/PPTX；必须先输出并使用“页面描述_优化版”。

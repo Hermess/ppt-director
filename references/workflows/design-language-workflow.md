@@ -22,6 +22,7 @@
 - `path`：短版 style-card，给模型或代码 Agent 的快速摘要。
 - `slide_map`：内容类型到页型语言的映射。
 - `assets.contact_sheet`：截图样例或缩略图，仅作为风格靠齐参考。
+- `assets.city_skyline` 等固定母版资产：必须直接引用，不得由模型重新生成、重绘或替换。
 
 `contact_sheet` 不是逐页复刻模板。它用于校准“看起来是否属于同一套设计系统”。
 
@@ -49,6 +50,7 @@
 - “推荐页型语言”来自 `slide_map` 或 `design_doc`。
 - “参考样例”可写 contact sheet 中最接近的页型名称，不要求精确页码。
 - “必须复用的视觉语法”写颜色、字体字号、标题区、角标、城市剪影、蓝橙组件、直角矩形、圆形节点等。
+- “固定资产”写明 registry 中的资产路径，例如 `city-skyline.png`，并标注必须引用原图。
 - “可变体空间”说明哪些地方可以根据内容变化，例如流程方向、模块数量、截图位置。
 
 ## 3. 不污染页面结构导演稿
@@ -78,6 +80,7 @@
 - 输出格式：HTML+CSS / SVG / python-pptx / HTML+PPTX。
 - 画布参数：16:9、1280×720、标题区、主体区、底部区、安全边距。
 - 设计系统 token：色彩、字体、字号、字重、线条、箭头、卡片形态、母版元素。
+- 固定资产引用：如右下城市剪影 PNG 的路径、锚点、尺寸范围和禁止重绘规则。
 - 区域坐标或比例：主视觉区域、辅助模块区域、底部收束区。
 - 页型组件映射：页面结构中的节点如何落到 `design.md` 的组件语法。
 - 字体字号参数：大标题、小标题、内容文字、页脚/来源的字号档位和字重。
@@ -94,6 +97,7 @@
 # 设计系统约束
 - 主色：来自 design.md
 - 字体字号：来自 design.md，例如 digital-zhejiang 使用微软雅黑，大标题/小标题/内容文字分档
+- 固定资产：来自 registry.yml，例如 city_skyline = references/styles/digital-zhejiang/assets/city-skyline.png
 - 标题区：使用当前模板的标题几何底
 - 组件：直角浅蓝承载底、蓝橙标题条、编号节点
 
@@ -128,6 +132,7 @@
 HTML/CSS 或 PPTX 生成时优先抽象母版函数：
 
 - `add_master_chrome`：正文页左上标题几何底、右上角标、右下城市剪影。
+- `add_city_skyline_asset`：直接插入 registry 中的 `city_skyline` PNG，锚定右下，保持透明背景和宽高比，不重绘。
 - `add_deep_blue_geometric_background`：封面/感谢/章节页深蓝几何背景。
 - `add_blue_orange_module`：蓝橙标题条、直角模块卡片、虚线浅蓝容器。
 - `add_flow_arrows`：蓝色主链路、橙色辅助链路。
@@ -143,6 +148,7 @@ HTML 预览和 PPTX 成稿都要先做 Style Check：
 - 颜色是否符合：
 - 字体是否符合：
 - 字号和字重是否符合：
+- 固定资产是否引用原图而非生成重绘：
 - 母版固定元素是否符合：
 - 页型是否贴合内容：
 - 哪些页靠齐截图：

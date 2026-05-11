@@ -145,12 +145,21 @@ HTML 经审查通过后，再映射生成 PPTX。
 
 页面描述优化版解决“讲什么、怎么组织”，但还不能直接生成。进入 HTML/PPTX 前，需要再生成一份“生成就绪导演稿”，把设计系统也读进来。
 
+默认产物命名建议为：
+
+```text
+[项目名]_生成就绪导演稿.md
+```
+
+例如 `平台边界双向流转_生成就绪导演稿.md`。HTML、PNG、PPTX 生成时，应以这份导演稿作为代码 Agent 的直接输入。
+
 它必须包含：
 
 - 输出格式：HTML+CSS、SVG、python-pptx 或 HTML+PPTX
 - 画布参数：1280×720、标题区、主体区、底部区、安全边距
 - 设计系统 token：来自 `design.md` 的颜色、字体、母版元素、组件形态、线条和箭头样式
 - 字体字号参数：字体、字号档位、字重，以及每个组件的字体 / 字号 / 字重
+- 固定资产引用：来自 `registry.yml` 和 `design.md` 的母版资产路径，例如 `city-skyline.png`
 - 区域坐标或比例：主视觉区、侧挂模块、底部价值区
 - 组件映射：内容节点 -> 设计系统组件 -> 坐标/尺寸 -> 样式 token
 - 连接规则：箭头起点、终点、方向、禁止连接
@@ -167,6 +176,7 @@ references/styles/digital-zhejiang/design.md
 references/styles/digital-zhejiang/style-card.md
 references/styles/digital-zhejiang/slide-type-map.md
 references/styles/digital-zhejiang/contact-sheet.png
+references/styles/digital-zhejiang/assets/city-skyline.png
 ```
 
 如果要替换 PPT 风格，可以新增一个设计语言目录，并在 `registry.yml` 中注册。最低要求：
@@ -191,6 +201,16 @@ contact-sheet.png 或若干截图样例
 - 禁止：微软雅黑 Light、宋体、特殊字体
 
 审查时要确认 HTML 和 PPTX 实际渲染图都满足上述档位。若 PPTX 因字体替换导致换行、溢出、遮挡或字号被压低，不能通过最终审查。
+
+## digital-zhejiang 固定母版资产
+
+正文页右下城市背景装饰使用固定 PNG 资产：
+
+```text
+references/styles/digital-zhejiang/assets/city-skyline.png
+```
+
+生成 HTML/PPTX 时必须直接引用该资产，保持透明背景、宽高比和右下锚定。不要让模型自行生成城市剪影，不要用 CSS/SVG 重绘，不要替换为照片、卡通或其他城市图。
 
 ## 目录结构
 
@@ -227,6 +247,7 @@ PPTX 不是“能打开”就算通过。生成 PPTX 后必须导出实际渲染
 
 - 标题、判断句和模块文字是否换行或溢出
 - 字体是否仍为微软雅黑或合规替代，字号是否落在设计档位，是否因字体替换导致换行/溢出
+- 右下城市剪影是否直接引用 `city-skyline.png`，而不是模型新画或代码重绘
 - 箭头方向、连接点和模块关系是否正确
 - 主视觉是否仍然是页面中心，辅助内容是否没有抢视觉
 - 母版元素、页脚、安全区、角标是否没有漂移
