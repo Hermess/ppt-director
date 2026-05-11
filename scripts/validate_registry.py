@@ -36,6 +36,7 @@ REQUIRED_SKILL_PHRASES = [
     "PPTX 实际渲染截图",
     "区域词",
     "主视觉占主体区",
+    "字体字号",
 ]
 
 REQUIRED_README_PHRASES = [
@@ -44,6 +45,7 @@ REQUIRED_README_PHRASES = [
     "PPTX 实际渲染截图",
     "视觉一致版",
     "可编辑原生版",
+    "字体字号",
 ]
 
 REQUIRED_REVIEW_PHRASES = [
@@ -51,6 +53,24 @@ REQUIRED_REVIEW_PHRASES = [
     "主视觉与辅助内容的面积比",
     "流程路径页",
     "PPTX 实际渲染截图",
+    "字体字号审查",
+]
+
+REQUIRED_DESIGN_PHRASES = [
+    "微软雅黑 Light",
+    "大标题",
+    "36 / 44 / 60 / 72",
+    "小标题",
+    "20 / 24 / 28",
+    "内容文字",
+    "16 / 18",
+]
+
+REQUIRED_GENERATION_READY_PHRASES = [
+    "字体与字号参数",
+    "大标题：36 / 44 / 60 / 72",
+    "小标题：20 / 24 / 28",
+    "内容文字：16 / 18",
 ]
 
 
@@ -133,6 +153,10 @@ def main() -> int:
             errors.append(f"missing workflow: {target.relative_to(ROOT)}")
 
     errors.extend(missing_phrases(workflow_dir / "final-layout-review.md", REQUIRED_REVIEW_PHRASES))
+    errors.extend(
+        missing_phrases(ROOT / "references" / "styles" / "digital-zhejiang" / "design.md", REQUIRED_DESIGN_PHRASES)
+    )
+    errors.extend(missing_phrases(workflow_dir / "generation-ready-director-brief.md", REQUIRED_GENERATION_READY_PHRASES))
 
     ds_store = [path.relative_to(ROOT) for path in ROOT.rglob(".DS_Store")]
     if ds_store:
