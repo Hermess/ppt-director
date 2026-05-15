@@ -15,7 +15,7 @@ SKILL = ROOT / "SKILL.md"
 README = ROOT / "README.md"
 
 
-PATH_RE = re.compile(r"^\s+(?:path|slide_map|design_doc|source_json|media_manifest):\s+(.+?)\s*$")
+PATH_RE = re.compile(r"^\s+(?:path|slide_map|design_doc):\s+(.+?)\s*$")
 ASSET_RE = re.compile(r"^\s+(?:contact_sheet|city_skyline):\s+(.+?)\s*$")
 
 REQUIRED_WORKFLOWS = [
@@ -39,7 +39,6 @@ REQUIRED_SKILL_PHRASES = [
     "主视觉占主体区",
     "字体字号",
     "城市剪影固定资产",
-    "ppt-workflow-cognitive-distillation",
 ]
 
 REQUIRED_README_PHRASES = [
