@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import re
 import sys
+import json
 from pathlib import Path
 
 
@@ -14,7 +15,7 @@ SKILL = ROOT / "SKILL.md"
 README = ROOT / "README.md"
 
 
-PATH_RE = re.compile(r"^\s+(?:path|slide_map|design_doc):\s+(.+?)\s*$")
+PATH_RE = re.compile(r"^\s+(?:path|slide_map|design_doc|source_json|media_manifest):\s+(.+?)\s*$")
 ASSET_RE = re.compile(r"^\s+(?:contact_sheet|city_skyline):\s+(.+?)\s*$")
 
 REQUIRED_WORKFLOWS = [
@@ -38,6 +39,7 @@ REQUIRED_SKILL_PHRASES = [
     "主视觉占主体区",
     "字体字号",
     "城市剪影固定资产",
+    "ppt-workflow-cognitive-distillation",
 ]
 
 REQUIRED_README_PHRASES = [
@@ -48,6 +50,8 @@ REQUIRED_README_PHRASES = [
     "可编辑原生版",
     "字体字号",
     "city-skyline.png",
+    "ppt-workflow-cognitive-distillation",
+    "我的PPT工作流",
 ]
 
 REQUIRED_REVIEW_PHRASES = [
@@ -77,6 +81,14 @@ REQUIRED_GENERATION_READY_PHRASES = [
     "内容文字：16 / 18",
     "城市剪影资产",
     "city-skyline.png",
+]
+
+REQUIRED_ARTICLE_PHRASES = [
+    "我的PPT工作流：认知蒸馏×进化优化×代码生成",
+    "PPT Director",
+    "女娲",
+    "达尔文",
+    "认知蒸馏",
 ]
 
 
@@ -163,6 +175,31 @@ def main() -> int:
         missing_phrases(ROOT / "references" / "styles" / "digital-zhejiang" / "design.md", REQUIRED_DESIGN_PHRASES)
     )
     errors.extend(missing_phrases(workflow_dir / "generation-ready-director-brief.md", REQUIRED_GENERATION_READY_PHRASES))
+    article_dir = ROOT / "references" / "articles" / "ppt-workflow-cognitive-distillation"
+    article = article_dir / "article.md"
+    manifest = article_dir / "media-manifest.json"
+    source = article_dir / "source.json"
+    errors.extend(missing_phrases(article, REQUIRED_ARTICLE_PHRASES))
+    if manifest.exists():
+        try:
+            items = json.loads(read(manifest))
+        except json.JSONDecodeError as exc:
+            errors.append(f"invalid media manifest: {manifest.relative_to(ROOT)}: {exc}")
+            items = []
+        for item in items:
+            rel = item.get("path")
+            if not rel:
+                errors.append(f"media manifest item missing path: {item}")
+                continue
+            target = article_dir / rel
+            if not target.exists():
+                errors.append(f"missing article media asset: {target.relative_to(ROOT)}")
+            elif target.stat().st_size <= 0:
+                errors.append(f"empty article media asset: {target.relative_to(ROOT)}")
+    if source.exists() and ("authcode" in read(source) or "internal-api-drive-stream" in read(source)):
+        errors.append("source.json contains temporary Feishu download URL")
+    if manifest.exists() and ("authcode" in read(manifest) or "internal-api-drive-stream" in read(manifest)):
+        errors.append("media-manifest.json contains temporary Feishu download URL")
 
     ds_store = [path.relative_to(ROOT) for path in ROOT.rglob(".DS_Store")]
     if ds_store:

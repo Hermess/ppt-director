@@ -33,3 +33,12 @@ toolchains:
   visual-ppt:
     path: references/toolchains/visual-ppt.md
     use_when: 发布会、品牌展示、融资路演、大会 keynote、强视觉冲击演示
+
+articles:
+  ppt-workflow-cognitive-distillation:
+    path: references/articles/ppt-workflow-cognitive-distillation/article.md
+    source_json: references/articles/ppt-workflow-cognitive-distillation/source.json
+    media_manifest: references/articles/ppt-workflow-cognitive-distillation/media-manifest.json
+    source: feishu-wiki
+    source_url: https://ykqm2z5s8b.feishu.cn/wiki/SosPwSalliPha1kJqaycagkSntg
+    use_when: 需要解释 PPT Director 与女娲、达尔文、代码生成如何组合使用，或需要给用户一份完整 PPT 工作流教程时

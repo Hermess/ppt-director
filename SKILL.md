@@ -75,6 +75,7 @@ description: |
 - 生成就绪导演稿：`references/workflows/generation-ready-director-brief.md`
 - 最终页面布局审查规范：`references/workflows/final-layout-review.md`
 - Prompt 库：`references/workflows/prompt-library.md`
+- 长文教程参考：`references/articles/ppt-workflow-cognitive-distillation/article.md`
 - 当前设计语言：从 `registry.yml` 的 `styles.<name>.design_doc` 读取
 - 当前风格：从 `registry.yml` 的 `styles.<name>.path` 读取
 - 当前页型映射：从 `registry.yml` 的 `styles.<name>.slide_map` 读取
@@ -83,6 +84,7 @@ description: |
 - 当前受众：从 `registry.yml` 的 `audiences.<name>.path` 读取
 - 当前评审专家：从 `registry.yml` 的 `reviewers.<name>.path` 读取
 - 当前工具链：从 `registry.yml` 的 `toolchains.<name>.path` 读取
+- 当前长文参考：从 `registry.yml` 的 `articles.<name>.path` 读取，例如 `ppt-workflow-cognitive-distillation`
 
 ## Standard Output Contract
 

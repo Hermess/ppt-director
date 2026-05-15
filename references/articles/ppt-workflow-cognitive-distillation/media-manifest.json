@@ -1,0 +1,62 @@
+[
+  {
+    "name": "534f54b6-0f27-4e58-b3a6-5e6553caf9b2.png",
+    "token": "PkKrb8iGWoedSaxmOntc3YahnOe",
+    "mime": "image/png",
+    "href_present": true,
+    "href": "[redacted temporary Feishu download URL; asset is downloaded locally]",
+    "path": "assets/534f54b6-0f27-4e58-b3a6-5e6553caf9b2.png",
+    "downloaded": true,
+    "download_method": "href-curl",
+    "download_returncode": 0,
+    "bytes": 59860
+  },
+  {
+    "name": "d28abda1-0863-44dc-9956-7b33929dd7b3.png",
+    "token": "XjtbbNvxmotwY4xMQ9ocualOnch",
+    "mime": "image/png",
+    "href_present": true,
+    "href": "[redacted temporary Feishu download URL; asset is downloaded locally]",
+    "path": "assets/d28abda1-0863-44dc-9956-7b33929dd7b3.png",
+    "downloaded": true,
+    "download_method": "href-curl",
+    "download_returncode": 0,
+    "bytes": 226483
+  },
+  {
+    "name": "6d05d88d-64a7-4d23-a6d8-9e94b5b8aa10.png",
+    "token": "CoeZbnjmcoJG0Zx7BsKcZBQTnre",
+    "mime": "image/png",
+    "href_present": true,
+    "href": "[redacted temporary Feishu download URL; asset is downloaded locally]",
+    "path": "assets/6d05d88d-64a7-4d23-a6d8-9e94b5b8aa10.png",
+    "downloaded": true,
+    "download_method": "href-curl",
+    "download_returncode": 0,
+    "bytes": 95056
+  },
+  {
+    "name": "8e3d2326-7322-4573-b3f3-dc069d882161.png",
+    "token": "M9AMbvB04ouUMPxQ6IPcaTGInng",
+    "mime": "image/png",
+    "href_present": true,
+    "href": "[redacted temporary Feishu download URL; asset is downloaded locally]",
+    "path": "assets/8e3d2326-7322-4573-b3f3-dc069d882161.png",
+    "downloaded": true,
+    "download_method": "href-curl",
+    "download_returncode": 0,
+    "bytes": 62063
+  },
+  {
+    "name": "e9080403-877a-4ca8-9adb-acd7f69abe7e.png",
+    "token": "SNNdbM5jRobe2CxY2DicUpYQnFA",
+    "mime": "image/png",
+    "href_present": true,
+    "href": "[redacted temporary Feishu download URL; asset is downloaded locally]",
+    "path": "assets/e9080403-877a-4ca8-9adb-acd7f69abe7e.png",
+    "downloaded": true,
+    "download_method": "href-curl",
+    "download_returncode": 0,
+    "bytes": 96224
+  }
+]
